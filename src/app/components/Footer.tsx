@@ -22,7 +22,7 @@ const Footer = () => {
       </div>
       <div className='flex flex-col xl:flex-row overflow-hidden xl:justify-between xl:items-center w-[97vw] max-w-[1400px] px-6 2xl:px-0'>
         <div className='flex flex-col md:flex-row justify-between md:items-center items-start py-4'>
-          <img src="/logotype-2.svg" width={120} height={100} className='md:my-0 my-16' />
+          <img src="/logotype-2.svg" alt='footer logo' width={120} height={100} className='md:my-0 my-16' />
           <ul className='flex flex-col md:flex-row min-w-full justify-between xl:ml-24 lg:ml-12 md:ml-4 text-white font-bold text-[14px] gap-6'>
             <li><a href="/why-calendio">Why Calendio</a></li>
             <li><a href="/features">Features</a></li>

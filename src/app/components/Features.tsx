@@ -109,6 +109,7 @@ const Features = () => {
                 src={feature.image}
                 width={800}
                 height={1000}
+                alt={feature.title}
               />
             </div>
           ))}

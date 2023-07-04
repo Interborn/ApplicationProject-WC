@@ -13,7 +13,7 @@ const Hero = () => {
           </div>
         </div>
         <div className='flex lg:w-1/2 my-24 justify-center items-center mr-6'>
-          <img src="/hero.png" width={1400} height={1000} className='max-h-[400px] lg:max-h-full object-cover' />
+          <img src="/hero.png" alt='tech hero' width={1400} height={1000} className='max-h-[400px] lg:max-h-full object-cover' />
         </div>
       </div>
     </div>
