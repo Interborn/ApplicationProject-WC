@@ -29,7 +29,10 @@ const featureIndex = [
   },
 ];
 
-const startTimer = (setTimeProgress, setSelectedOption) => {
+const startTimer = (
+  setTimeProgress: React.Dispatch<React.SetStateAction<number>>,
+  setSelectedOption: React.Dispatch<React.SetStateAction<number>>
+) => {
   return setInterval(() => {
     setTimeProgress((prevTimeProgress) => {
       if (prevTimeProgress === 1000) {
@@ -47,24 +50,26 @@ const startTimer = (setTimeProgress, setSelectedOption) => {
 const Features = () => {
   const [selectedOption, setSelectedOption] = useState(0);
   const [prevSelectedOption, setPrevSelectedOption] = useState(0);
-  const [timer, setTimer] = useState(null);
+  const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
   const [timeProgress, setTimeProgress] = useState(0);
+  
 
   const startOrResetTimer = () => {
-    clearInterval(timer);
-    setTimer(startTimer(setTimeProgress, setSelectedOption));
+    clearInterval(timer as NodeJS.Timeout);
+    setTimer(startTimer(setTimeProgress, setSelectedOption) as NodeJS.Timeout);
   };
 
-  const handleOptionClick = (option) => {
+  const handleOptionClick = (option: number) => {
     if (selectedOption === option) {
       return; // Do nothing if the clicked option is already selected
     }
+    setSelectedOption(option);
 
     setSelectedOption(option);
   };
 
   const handleAccordionHover = () => {
-    clearInterval(timer);
+    clearInterval(timer as NodeJS.Timeout);
   };
 
   const handleAccordionLeave = () => {
@@ -78,12 +83,12 @@ const Features = () => {
   useEffect(() => {
     startOrResetTimer();
     return () => {
-      clearInterval(timer);
+      clearInterval(timer as NodeJS.Timeout);
     };
   }, []);
 
   useEffect(() => {
-    const progress = document.getElementById('progress-bar');
+    const progress = document.getElementById('progress-bar') as HTMLProgressElement;
     if (progress) {
       progress.value = timeProgress;
     }
@@ -100,7 +105,7 @@ const Features = () => {
                 selectedOption === index ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <Image
+              <img
                 src={feature.image}
                 width={800}
                 height={1000}
@@ -137,7 +142,7 @@ const Features = () => {
               {selectedOption === index && (
                 <div className={`overflow-hidden duration-300 px-4 text-[14px] lg:text-[17px] lg:max-w-[50ch] flex flex-col justify-center ${selectedOption !== prevSelectedOption ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
                   <p className="text-triBlue my-6">{feature.body}</p>
-                  <a href={feature.link} className="text-primBlue font-bold">
+                  <a href={feature.link} className="text-primBlue w-[10ch] font-bold hover:scale-105">
                     Learn more
                   </a>
                 </div>

@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 
 const benefitIndex = [
@@ -33,13 +32,13 @@ const Benefits = () => {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.5, // Adjust this threshold value as needed
+      threshold: 0.5,
     };
 
     const handleIntersect = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const visibleBenefitIndex = parseInt(entry.target.dataset.index);
+          const visibleBenefitIndex = parseInt((entry.target as HTMLElement).dataset.index ?? '0');
           setActiveBenefitIndex(visibleBenefitIndex);
         }
       });
@@ -77,7 +76,7 @@ const Benefits = () => {
           </div>
           <div className="w-1/2 h-[100%] sticky md:block hidden" style={{ top: 'calc(50vh/2)' }}>
             <div className="w-full flex justify-center">
-              <Image src={currentBenefit.image} width={600} height={500} />
+              <img src={currentBenefit.image} width={600} height={500} alt="Benefit" />
             </div>
           </div>
         </div>
@@ -90,7 +89,7 @@ const Benefits = () => {
                 <p className="text-[18px] text-triBlue">{benefit.body}</p>
               </div>
               <div className="w-full flex justify-center">
-                <Image src={benefit.image} width={500} height={500} />
+                <img src={benefit.image} width={500} height={500} alt="Benefit" />
               </div>
             </div>
           ))}
